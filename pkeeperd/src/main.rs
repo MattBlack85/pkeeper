@@ -1,5 +1,6 @@
 use std::{thread, time};
 
+#[allow(dead_code)]
 fn main() {
     pkeeperd::read_config();
 
