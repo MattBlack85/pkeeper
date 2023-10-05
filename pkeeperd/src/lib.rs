@@ -54,8 +54,6 @@ fn retrieve_users() {}
 
 
 
-
-
 //  CODICE ORIGINALE
 // fn check_config_exists(path: &String) {
 //     if !Path::new(path).exists() {
