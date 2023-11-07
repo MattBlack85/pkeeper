@@ -1,3 +1,4 @@
+pub mod config;
 pub mod db;
 
 #[cfg(target_family = "windows")]
@@ -7,7 +8,7 @@ fn retrieve_users() {}
 fn retrieve_users() {}
 
 pub fn read_config() {
-    db::init_db();
+    // Query the database and create a new config::Config
 }
 
 #[allow(dead_code)]

@@ -1,8 +1,11 @@
+use pkeeperd::config;
+use pkeeperd::db;
 use std::{thread, time};
 
 #[allow(dead_code)]
 fn main() {
-    pkeeperd::read_config();
+    db::init_db();
+    let pconfig = config::Config::new();
 
     loop {
         println!("checking");
