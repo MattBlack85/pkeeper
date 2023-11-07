@@ -1,7 +1,4 @@
-use dirs;
-use std::fs;
-use std::fs::File;
-use std::path::Path;
+pub mod db;
 
 #[cfg(target_family = "windows")]
 fn retrieve_users() {}
@@ -9,34 +6,8 @@ fn retrieve_users() {}
 #[cfg(target_family = "unix")]
 fn retrieve_users() {}
 
-fn check_config_exists(path: &Path) {
-    if !path.exists() {
-        let parent = path.parent().unwrap();
-
-        if !parent.exists() {
-            match fs::create_dir(&parent) {
-                Ok(()) => (),
-                Err(e) => println!("Got an error: {}", e),
-            }
-        }
-
-        match File::create(path) {
-            Ok(_) => (),
-            Err(e) => println!("Got an error: {}", e),
-        }
-    }
-}
-
 pub fn read_config() {
-    match dirs::config_local_dir() {
-        Some(config_path) => {
-            let p = format!("{}/pkeeper/config.ini", &config_path.display());
-            let full_path = Path::new(&p);
-            check_config_exists(&full_path);
-            let _file = File::open(&full_path).unwrap();
-        }
-        None => std::process::exit(101),
-    }
+    db::init_db();
 }
 
 #[allow(dead_code)]
