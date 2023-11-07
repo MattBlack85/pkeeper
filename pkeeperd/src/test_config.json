@@ -1,0 +1,35 @@
+{
+  "users": [
+    {
+      "name": "foo",
+      "schedule": [
+	{
+	  "day": "monday",
+	  "total_time": 180,
+	  "wake_up": "09:00",
+	  "sleep": "21:00"
+	}, {
+	  "day": "wednesday",
+	  "total_time": 60,
+	  "wake_up": "09:00",
+	  "sleep": "21:00"
+	}
+      ]
+    }, {
+      "name": "bar",
+      "schedule": [
+	{
+	  "day": "monday",
+	  "total_time": 180,
+	  "wake_up": "09:00",
+	  "sleep": "21:00"
+	}, {
+	  "day": "friday",
+	  "total_time": 60,
+	  "wake_up": "09:00",
+	  "sleep": "21:00"
+	}
+      ]
+    }
+  ]
+}
