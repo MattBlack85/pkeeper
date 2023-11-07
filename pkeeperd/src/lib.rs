@@ -9,11 +9,15 @@ fn retrieve_users() {}
 #[cfg(target_family = "unix")]
 fn retrieve_users() {}
 
-fn check_config_exists(path: &String) {
-    if !Path::new(path).exists() {
-        match fs::create_dir(path[..path.len() - 10].to_string()) {
-            Ok(()) => (),
-            Err(e) => println!("Got an error: {}", e),
+fn check_config_exists(path: &Path) {
+    if !path.exists() {
+        let parent = path.parent().unwrap();
+
+        if !parent.exists() {
+            match fs::create_dir(&parent) {
+                Ok(()) => (),
+                Err(e) => println!("Got an error: {}", e),
+            }
         }
 
         match File::create(path) {
@@ -26,7 +30,8 @@ fn check_config_exists(path: &String) {
 pub fn read_config() {
     match dirs::config_local_dir() {
         Some(config_path) => {
-            let full_path = format!("{}/pkeeper/config.ini", &config_path.display());
+            let p = format!("{}/pkeeper/config.ini", &config_path.display());
+            let full_path = Path::new(&p);
             check_config_exists(&full_path);
             let _file = File::open(&full_path).unwrap();
         }
