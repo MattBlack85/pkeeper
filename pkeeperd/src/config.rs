@@ -1,6 +1,11 @@
 use serde::{Deserialize, Serialize};
 use serde_json::Result;
 
+fn read_json_typed(raw_json: &str) -> Config {
+  let parsed: Config = serde_json::from_str(raw_json).unwrap();
+  return parsed
+}
+
 #[derive(Serialize, Deserialize)]
 pub struct Day {
     name: String,
@@ -23,8 +28,7 @@ pub struct Config {
 impl Config {
     pub fn new() -> Config {
         // let raw_users = find a way to extract data from the database
-      pub fn extract_users() -> Result<()> {
-        let raw_users = r#"
+        let parsed = r#"
         {
           "users": [
         {
@@ -59,11 +63,7 @@ impl Config {
           ]
         }"#;
 
-        let data: Config = serde_json::from_str(raw_users)?;
-        Ok(())
-      }
-
-        let p = extract_users();
+        let raw_user: Config = read_json_typed(parsed);
         let users: Vec<User> = Vec::new();
         
         // for every user in raw_users;
