@@ -27,7 +27,7 @@ impl Config {
         let conn = Connection::open("test.db").expect("Error 101 - It was not be possible connect to the database");
 
         let mut stmt = conn
-            .prepare("SELECT id, name, schedule FROM utenti")
+            .prepare("SELECT id, name, schedule FROM users")
             .expect("Error 201 - It was not be possible load the database");
         let person_iter = stmt
             .query_map([], |row| {
