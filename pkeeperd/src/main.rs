@@ -9,6 +9,7 @@ fn main() {
 
     loop {
         println!("checking");
+        config::Config::new();
         let sleep = time::Duration::from_millis(2500);
         thread::sleep(sleep);
     }
